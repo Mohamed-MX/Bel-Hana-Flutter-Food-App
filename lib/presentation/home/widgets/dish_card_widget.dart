@@ -19,180 +19,29 @@ class DishCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: SizedBox(
         width: 180,
-        height: 230, // Increased from 210 to fix overflow
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              const Color(0xFFFFF0F0), // Very light pink
-              const Color(0xFFEFBDBD), // Light pink (user's color)
-            ],
-          ),
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.06),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Stack(
-          clipBehavior: Clip.none,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // Main content
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 70, 12, 12),
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    // Dish name in Arabic - BIGGER
-                    Text(
-                      dish.arabicName,
-                      style: const TextStyle(
-                        fontSize: 16, // Larger
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textPrimary,
-                      ),
-                      textAlign: TextAlign.right,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 6),
-                    // Category tag with fire icon
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.white.withValues(alpha: 0.85),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.local_fire_department,
-                            size: 14,
-                            color: AppColors.coral,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            dish.categoryDisplayName,
-                            style: const TextStyle(
-                              fontSize: 12, // Larger
-                              color: AppColors.textSecondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    // Rating row - BIGGER
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          '(${dish.reviewCount}+)',
-                          style: const TextStyle(
-                            fontSize: 12, // Larger
-                            color: AppColors.textSecondary,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          dish.rating.toString(),
-                          style: const TextStyle(
-                            fontSize: 14, // Larger
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textPrimary,
-                          ),
-                        ),
-                        const SizedBox(width: 3),
-                        const Icon(
-                          Icons.star,
-                          size: 16,
-                          color: AppColors.starYellow,
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    // Price row with cart button - BIGGER
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Cart button
-                        GestureDetector(
-                          onTap: onAddToCart,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: const Icon(
-                              Icons.shopping_cart_outlined,
-                              size: 20,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ),
-                        // Price - BIGGER
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text(
-                              'ج.م',
-                              style: TextStyle(
-                                fontSize: 12, // Larger
-                                color: AppColors.textSecondary,
-                              ),
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              dish.price.toInt().toString(),
-                              style: const TextStyle(
-                                fontSize: 20, // Larger
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primary,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+            // Top: Light pink container with food image inside
+            Container(
+              width: double.infinity,
+              height: 130,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFDE8E8),
+                borderRadius: BorderRadius.circular(20),
               ),
-            ),
-            // Floating food image
-            Positioned(
-              top: -25,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: SizedBox(
-                  width: 90,
-                  height: 90,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
                   child: Image.asset(
                     dish.imageAsset,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.greyLight,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
+                      return Center(
+                        child: Icon(
                           Icons.restaurant,
                           size: 40,
                           color: AppColors.grey,
@@ -201,6 +50,135 @@ class DishCardWidget extends StatelessWidget {
                     },
                   ),
                 ),
+              ),
+            ),
+
+            // Bottom: White area with text content
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  // Text content - right aligned (RTL)
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Dish name
+                        Text(
+                          dish.arabicName,
+                          style: const TextStyle(
+                            fontSize: 16, // Larger
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textPrimary,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 4),
+                        // Category with icon
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.local_fire_department,
+                              size: 14,
+                              color: AppColors.coral,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              dish.categoryDisplayName,
+                              style: const TextStyle(
+                                fontSize: 12, // Larger
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        // Rating row - BIGGER
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              size: 18,
+                              color: AppColors.starYellow,
+                            ),
+                            const SizedBox(width: 3),
+                            Text(
+                              dish.rating.toString(),
+                              style: const TextStyle(
+                                fontSize: 14, // Larger
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              '(${dish.reviewCount}+)',
+                              style: const TextStyle(
+                                fontSize: 12, // Larger
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        // Price - BIGGER
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              '${dish.price.toInt()}',
+                              style: const TextStyle(
+                                fontSize: 20, // Larger
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            const Text(
+                              'ج.م',
+                              style: TextStyle(
+                                fontSize: 12, // Larger
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Cart button - bottom left, special corner rounding
+                  // Rounded on top-right and bottom-left ONLY
+                  Positioned(
+                    left: 0,
+                    bottom: 0,
+                    child: GestureDetector(
+                      onTap: onAddToCart,
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: const BoxDecoration(
+                          color: AppColors.coral,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(14),
+                            bottomLeft: Radius.circular(14),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.add_shopping_cart,
+                          size: 22,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

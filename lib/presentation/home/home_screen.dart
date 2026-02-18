@@ -31,26 +31,28 @@ class HomeScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
+              // Sticky Header
+              _buildHeader(context),
+
+              // Sticky Search Bar
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+                child: SearchBarWidget(),
+              ),
+
+              const SizedBox(height: 12),
+
               // Scrollable content
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      // Header Section
-                      _buildHeader(context),
-                      
                       // Main Content
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 16),
-                            
-                            // Search Bar
-                            const SearchBarWidget(),
-                            
-                            const SizedBox(height: 20),
                             
                             // Categories Section
                             Consumer<HomeViewModel>(
@@ -100,13 +102,13 @@ class HomeScreen extends StatelessWidget {
                               builder: (context, viewModel, child) {
                                 final dishes = viewModel.dishes;
                                 return SizedBox(
-                                  height: 260,
+                                  height: 290,
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: ListView.separated(
                                       scrollDirection: Axis.horizontal,
                                       padding: const EdgeInsets.only(
-                                        top: 25,
+                                        top: 8,
                                         left: 8,
                                         right: 8,
                                         bottom: 10,
@@ -130,6 +132,47 @@ class HomeScreen extends StatelessWidget {
                             ),
                             
                             const SizedBox(height: 20),
+
+                            // All Restaurants Section Header
+                            Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'جميع المطاعم',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.textPrimary,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '2 مطعم',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          color: AppColors.coral,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        'بالقرب منك',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: AppColors.textSecondary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            
+                            // Extra bottom padding to avoid nav bar overlap
+                            const SizedBox(height: 100),
                           ],
                         ),
                       ),
@@ -195,7 +238,7 @@ class HomeScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          Text(الاف
                             viewModel.locationTitle,
                             style: const TextStyle(
                               fontSize: 16,
