@@ -6,6 +6,7 @@ import 'presentation/home/home_screen.dart';
 import 'presentation/home/home_viewmodel.dart';
 import 'presentation/trending/trending_screen.dart';
 import 'presentation/trending/trending_viewmodel.dart';
+import 'presentation/track_order/track_order_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         home: const HomeScreen(),
         routes: {
           '/trending': (context) => const TrendingScreen(),
+          '/track-order': (context) => const TrackOrderScreen(),
         },
       ),
     );

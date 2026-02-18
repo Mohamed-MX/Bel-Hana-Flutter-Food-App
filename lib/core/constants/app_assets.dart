@@ -26,4 +26,8 @@ class AppAssets {
   // Dish Images (new)
   static const String spicyBurger = '$_imagesPath/burger.png';
   static const String shrimpDish = '$_imagesPath/shrimp_dish.png';
+
+  // Track Order Page
+  static const String deliveryIllustration = '$_imagesPath/delivery_illustration.png';
+  static const String pastaDish = '$_imagesPath/pasta_dish.png';
 }

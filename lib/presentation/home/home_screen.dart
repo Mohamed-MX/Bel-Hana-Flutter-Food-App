@@ -158,30 +158,33 @@ class HomeScreen extends StatelessWidget {
             textDirection: TextDirection.rtl,
             child: Row(
               children: [
-                // Profile Avatar on RIGHT side (RTL start)
-                Container(
-                  width: 42,
-                  height: 42,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.greyLight,
-                      width: 2,
+                // Profile Avatar on RIGHT side (RTL start) → navigates to Track Order
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, '/track-order'),
+                  child: Container(
+                    width: 42,
+                    height: 42,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: AppColors.greyLight,
+                        width: 2,
+                      ),
                     ),
-                  ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      AppAssets.profileAvatar,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: AppColors.greyLight,
-                          child: const Icon(
-                            Icons.person,
-                            color: AppColors.grey,
-                          ),
-                        );
-                      },
+                    child: ClipOval(
+                      child: Image.asset(
+                        AppAssets.profileAvatar,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: AppColors.greyLight,
+                            child: const Icon(
+                              Icons.person,
+                              color: AppColors.grey,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -267,7 +270,9 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Cart button with count
-                Container(
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, '/track-order'),
+                  child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
                     vertical: 12,
@@ -308,7 +313,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                
+                ),
                 // Total price (if items in cart)
                 if (viewModel.cartCount > 0)
                   Directionality(

@@ -5,14 +5,14 @@ class AppColors {
   AppColors._();
 
   // Primary Colors - Coral/Salmon theme
-  static const Color primary = Color(0xFFE53935);
-  static const Color primaryLight = Color(0xFFFF6F60);
-  static const Color primaryDark = Color(0xFFAB000D);
+  static const Color primary = Color(0xFFF55540);
+  static const Color primaryLight = Color(0xFFF55540);
+  static const Color primaryDark = Color(0xFFF55540);
   
   // Accent Colors
   static const Color accent = Color(0xFFFFD600);
   static const Color accentLight = Color(0xFFFFF176);
-  static const Color coral = Color(0xFFFF7043);
+  static const Color coral = Color(0xFFF55540);
   static const Color coralLight = Color(0xFFFFAB91);
   
   // Pink Card Gradients
@@ -29,7 +29,7 @@ class AppColors {
   
   // Text Colors
   static const Color textPrimary = Color(0xFF212121);
-  static const Color textSecondary = Color(0xFF757575);
+  static const Color textSecondary = Color(0xFF212121);
   static const Color textOnPrimary = Colors.white;
   
   // Background Colors
