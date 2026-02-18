@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'core/theme/app_theme.dart';
-import 'presentation/home/home_screen.dart';
 import 'presentation/home/home_viewmodel.dart';
 import 'presentation/trending/trending_screen.dart';
 import 'presentation/trending/trending_viewmodel.dart';
 import 'presentation/track_order/track_order_screen.dart';
+import 'presentation/main_shell.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        home: const HomeScreen(),
+        home: const MainShell(),
         routes: {
           '/trending': (context) => const TrendingScreen(),
           '/track-order': (context) => const TrackOrderScreen(),

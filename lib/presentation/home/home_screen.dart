@@ -137,9 +137,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              
-              // Fixed Bottom Cart Bar
-              _buildBottomCartBar(context),
             ],
           ),
         ),
@@ -245,93 +242,6 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-
-  /// Builds the fixed bottom cart bar
-  Widget _buildBottomCartBar(BuildContext context) {
-    return Consumer<HomeViewModel>(
-      builder: (context, viewModel, child) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.1),
-                blurRadius: 10,
-                offset: const Offset(0, -2),
-              ),
-            ],
-          ),
-          child: SafeArea(
-            top: false,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Cart button with count
-                GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, '/track-order'),
-                  child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 12,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        Icons.shopping_cart_outlined,
-                        color: AppColors.white,
-                        size: 20,
-                      ),
-                      if (viewModel.cartCount > 0) ...[
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 2,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            '${viewModel.cartCount}',
-                            style: const TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-                ),
-                // Total price (if items in cart)
-                if (viewModel.cartCount > 0)
-                  Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Text(
-                      '${viewModel.cartCount * 150} ج.م',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }
