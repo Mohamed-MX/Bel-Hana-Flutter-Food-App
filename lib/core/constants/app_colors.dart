@@ -38,7 +38,7 @@ class AppColors {
   
   // Status Colors
   static const Color success = Color(0xFF4CAF50);
-  static const Color error = Color(0xFFE53935);
+  static const Color error = Color(0xFFF55540);
   
   // Rating Colors
   static const Color starYellow = Color(0xFFFFC107);

@@ -6,7 +6,7 @@ import 'presentation/home/home_viewmodel.dart';
 import 'presentation/trending/trending_screen.dart';
 import 'presentation/trending/trending_viewmodel.dart';
 import 'presentation/track_order/track_order_screen.dart';
-import 'presentation/main_shell.dart';
+import 'presentation/home/widgets/navigation_bar_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        home: const MainShell(),
+        home: const NavigationBarWidget(),
         routes: {
           '/trending': (context) => const TrendingScreen(),
           '/track-order': (context) => const TrackOrderScreen(),

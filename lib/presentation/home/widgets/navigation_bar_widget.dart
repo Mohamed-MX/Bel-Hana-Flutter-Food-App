@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import '../core/constants/app_colors.dart';
-import 'home/home_screen.dart';
-import 'favorites/favorites_screen.dart';
-import 'orders/orders_screen.dart';
-import 'profile/profile_screen.dart';
-import 'track_order/track_order_screen.dart';
+import '../../../core/constants/app_colors.dart';
+import '../home_screen.dart';
+import '../../favorites/favorites_screen.dart';
+import '../../orders/orders_screen.dart';
+import '../../profile/profile_screen.dart';
+import '../../track_order/track_order_screen.dart';
 
-/// Main shell with custom bottom navigation bar
-class MainShell extends StatefulWidget {
-  const MainShell({super.key});
+/// Main navigation bar widget with bottom app bar and center cart FAB.
+/// Acts as the root screen that hosts all main pages via IndexedStack.
+class NavigationBarWidget extends StatefulWidget {
+  const NavigationBarWidget({super.key});
 
   @override
-  State<MainShell> createState() => _MainShellState();
+  State<NavigationBarWidget> createState() => _NavigationBarWidgetState();
 }
 
-class _MainShellState extends State<MainShell> {
-  int _currentIndex = 0; // 0 = Home (rightmost in RTL)
+class _NavigationBarWidgetState extends State<NavigationBarWidget> {
+  int _currentIndex = 0;
 
   // Pages order: Home, Favorites, (cart FAB gap), Orders, Profile
   final List<Widget> _pages = const [
@@ -190,15 +191,15 @@ class _HomePentagonPainter extends CustomPainter {
 
     // Pentagon home shape (rounded house)
     path.moveTo(w * 0.5, h * 0.02);   // Top center point
-    path.quadraticBezierTo(w * 0.58, h * 0.02, w * 0.88, h * 0.25); // Top right curve
-    path.quadraticBezierTo(w * 1.02, h * 0.36, w * 0.98, h * 0.55); // Right side
-    path.lineTo(w * 0.95, h * 0.78);  // Right bottom
-    path.quadraticBezierTo(w * 0.93, h * 0.98, w * 0.78, h * 0.98); // Bottom right corner
-    path.lineTo(w * 0.22, h * 0.98);  // Bottom
-    path.quadraticBezierTo(w * 0.07, h * 0.98, w * 0.05, h * 0.78); // Bottom left corner
-    path.lineTo(w * 0.02, h * 0.55);  // Left side
-    path.quadraticBezierTo(w * -0.02, h * 0.36, w * 0.12, h * 0.25); // Left top curve
-    path.quadraticBezierTo(w * 0.42, h * 0.02, w * 0.5, h * 0.02); // Top left curve
+    path.quadraticBezierTo(w * 0.58, h * 0.02, w * 0.88, h * 0.25);
+    path.quadraticBezierTo(w * 1.02, h * 0.36, w * 0.98, h * 0.55);
+    path.lineTo(w * 0.95, h * 0.78);
+    path.quadraticBezierTo(w * 0.93, h * 0.98, w * 0.78, h * 0.98);
+    path.lineTo(w * 0.22, h * 0.98);
+    path.quadraticBezierTo(w * 0.07, h * 0.98, w * 0.05, h * 0.78);
+    path.lineTo(w * 0.02, h * 0.55);
+    path.quadraticBezierTo(w * -0.02, h * 0.36, w * 0.12, h * 0.25);
+    path.quadraticBezierTo(w * 0.42, h * 0.02, w * 0.5, h * 0.02);
     path.close();
 
     canvas.drawPath(path, paint);

@@ -18,7 +18,7 @@ class HomeViewModel extends ChangeNotifier {
       name: 'Fast Food',
       arabicName: 'وجبات سريعة',
       imageAsset: AppAssets.fastFood,
-      backgroundColor: Color(0xFFFF4343), // red
+      backgroundColor: Color(0xFFF55540), // red
     ),
     FoodCategory(
       id: 'grilled',
