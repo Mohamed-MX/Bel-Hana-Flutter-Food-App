@@ -134,9 +134,9 @@ class DishCardWidget extends StatelessWidget {
                             Text(
                               '${dish.price.toInt()}',
                               style: const TextStyle(
-                                fontSize: 20, // Larger
+                                fontSize: 16, // Larger
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.primary,
+                                color: AppColors.textPrimary,
                               ),
                             ),
                             const SizedBox(width: 4),
@@ -144,7 +144,7 @@ class DishCardWidget extends StatelessWidget {
                               'ج.م',
                               style: TextStyle(
                                 fontSize: 12, // Larger
-                                color: AppColors.textSecondary,
+                                color: AppColors.textPrimary,
                               ),
                             ),
                           ],

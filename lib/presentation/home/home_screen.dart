@@ -238,7 +238,7 @@ class HomeScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(الاف
+                          Text(
                             viewModel.locationTitle,
                             style: const TextStyle(
                               fontSize: 16,
