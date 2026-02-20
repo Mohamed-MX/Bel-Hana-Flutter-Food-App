@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/constants/app_colors.dart';
 import '../home_screen.dart';
 import '../../favorites/favorites_screen.dart';
 import '../../orders/orders_screen.dart';
 import '../../profile/profile_screen.dart';
 import '../../track_order/track_order_screen.dart';
+import '../../cart/cart_bloc.dart';
+import '../../cart/cart_state.dart';
 
 /// Main navigation bar widget with bottom app bar and center cart FAB.
 /// Acts as the root screen that hosts all main pages via IndexedStack.
@@ -46,28 +49,73 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
     );
   }
 
-  /// Cart FAB - navigates to Track Order page
+  /// Cart FAB with badge - navigates to Track Order page
   Widget _buildCartFAB() {
-    return Container(
-      width: 62,
-      height: 62,
-      margin: const EdgeInsets.only(top: 24),
-      child: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const TrackOrderScreen()),
-          );
-        },
-        backgroundColor: AppColors.coral,
-        elevation: 6,
-        shape: const CircleBorder(),
-        child: const Icon(
-          Icons.shopping_cart,
-          color: Colors.white,
-          size: 28,
-        ),
-      ),
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        return Container(
+          width: 62,
+          height: 62,
+          margin: const EdgeInsets.only(top: 24),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const TrackOrderScreen()),
+                  );
+                },
+                backgroundColor: AppColors.coral,
+                elevation: 6,
+                shape: const CircleBorder(),
+                child: const Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                  size: 28,
+                ),
+              ),
+              // White badge with item count - only visible when cart has items
+              if (state.itemCount > 0)
+                Positioned(
+                  right: -2,
+                  top: -2,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    constraints: const BoxConstraints(
+                      minWidth: 22,
+                      minHeight: 22,
+                    ),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${state.itemCount}',
+                        style: const TextStyle(
+                          color: AppColors.coral,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          height: 1,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
     );
   }
 

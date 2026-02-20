@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../cart/cart_bloc.dart';
+import '../cart/cart_event.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_assets.dart';
 import 'home_viewmodel.dart';
@@ -121,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                                           dish: dishes[index],
                                           onTap: () {},
                                           onAddToCart: () {
-                                            viewModel.addToCart(dishes[index]);
+                                            context.read<CartBloc>().add(CartItemAdded());
                                           },
                                         );
                                       },
