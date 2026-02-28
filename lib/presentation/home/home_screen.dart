@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../cart/cart_bloc.dart';
-import '../cart/cart_event.dart';
+import '../item_details/item_details_screen.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_assets.dart';
 import 'home_viewmodel.dart';
@@ -121,9 +120,21 @@ class HomeScreen extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         return DishCardWidget(
                                           dish: dishes[index],
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (_) => ItemDetailsScreen(dish: dishes[index]),
+                                              ),
+                                            );
+                                          },
                                           onAddToCart: () {
-                                            context.read<CartBloc>().add(CartItemAdded());
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (_) => ItemDetailsScreen(dish: dishes[index]),
+                                              ),
+                                            );
                                           },
                                         );
                                       },
