@@ -8,7 +8,7 @@ class ItemDetailsBloc extends Bloc<ItemDetailsEvent, ItemDetailsState> {
       : super(ItemDetailsState(
           basePrice: basePrice,
           sizes: const [
-            ItemOption(name: 'سنجل', price: 0.50),
+            ItemOption(name: 'سنجل', price: 0.00),
             ItemOption(name: 'دبل', price: 0.50),
           ],
           extras: const [
