@@ -5,7 +5,7 @@ import '../home_screen.dart';
 import '../../favorites/favorites_screen.dart';
 import '../../orders/orders_screen.dart';
 import '../../profile/profile_screen.dart';
-import '../../track_order/track_order_screen.dart';
+import '../../cart/cart_screen.dart';
 import '../../cart/cart_bloc.dart';
 import '../../cart/cart_state.dart';
 
@@ -64,7 +64,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => const TrackOrderScreen()),
+                    MaterialPageRoute(builder: (_) => const CartScreen()),
                   );
                 },
                 backgroundColor: AppColors.coral,

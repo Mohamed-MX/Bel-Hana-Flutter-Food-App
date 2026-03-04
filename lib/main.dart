@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/theme/app_theme.dart';
+import 'data/cart_database_helper.dart';
 import 'presentation/home/home_viewmodel.dart';
 import 'presentation/trending/trending_screen.dart';
 import 'presentation/trending/trending_viewmodel.dart';
@@ -10,7 +11,10 @@ import 'presentation/track_order/track_order_screen.dart';
 import 'presentation/splash/splash_screen.dart';
 import 'presentation/cart/cart_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize the SQLite cart database
+  await CartDatabaseHelper.instance.database;
   runApp(const MyApp());
 }
 
@@ -20,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => CartBloc(),
+      create: (_) => CartBloc(CartDatabaseHelper.instance),
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => HomeViewModel()),

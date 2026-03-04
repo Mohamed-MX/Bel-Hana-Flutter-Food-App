@@ -497,9 +497,10 @@ class _ItemDetailsBody extends StatelessWidget {
                   flex: 3,
                   child: GestureDetector(
                     onTap: () {
-                      // Add items to cart (quantity times)
-                      for (int i = 0; i < state.quantity; i++) {
-                        context.read<CartBloc>().add(CartItemAdded());
+                      // Add dish to cart once, then increment for additional quantity
+                      context.read<CartBloc>().add(CartItemAdded(dish));
+                      for (int i = 1; i < state.quantity; i++) {
+                        context.read<CartBloc>().add(CartItemIncremented(dish.id));
                       }
                       // Show confirmation and go back
                       ScaffoldMessenger.of(context).showSnackBar(

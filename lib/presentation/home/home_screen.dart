@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../item_details/item_details_screen.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_assets.dart';
+import '../cart/cart_bloc.dart';
+import '../cart/cart_event.dart';
 import 'home_viewmodel.dart';
 import 'widgets/search_bar_widget.dart';
 import 'widgets/offer_banner_widget.dart';
@@ -129,10 +131,22 @@ class HomeScreen extends StatelessWidget {
                                             );
                                           },
                                           onAddToCart: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (_) => ItemDetailsScreen(dish: dishes[index]),
+                                            context.read<CartBloc>().add(
+                                              CartItemAdded(dishes[index]),
+                                            );
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'تمت الإضافة إلى السلة ✓',
+                                                  textDirection: TextDirection.rtl,
+                                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                                ),
+                                                backgroundColor: AppColors.coral,
+                                                duration: const Duration(seconds: 2),
+                                                behavior: SnackBarBehavior.floating,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                ),
                                               ),
                                             );
                                           },
