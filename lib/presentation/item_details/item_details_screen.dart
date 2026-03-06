@@ -4,6 +4,9 @@ import '../../core/constants/app_colors.dart';
 import '../../data/models/dish_model.dart';
 import '../cart/cart_bloc.dart';
 import '../cart/cart_event.dart';
+import '../favorites/favorites_bloc.dart';
+import '../favorites/favorites_event.dart';
+import '../favorites/favorites_state.dart';
 import 'item_details_bloc.dart';
 import 'item_details_event.dart';
 import 'item_details_state.dart';
@@ -164,14 +167,47 @@ class _ItemDetailsBody extends StatelessWidget {
           ),
         ),
 
-        // Bell icon (top-left in RTL = top-right visually)
+        // Bell icon replaced by heart-favourite button (top-left in RTL = top-right visually)
         Positioned(
           top: MediaQuery.of(context).padding.top + 8,
           left: 16,
-          child: const Icon(
-            Icons.notifications_none_outlined,
-            color: AppColors.textSecondary,
-            size: 28,
+          child: BlocBuilder<FavoritesBloc, FavoritesState>(
+            builder: (context, favState) {
+              final isFav = favState.isFavorite(dish.id);
+              return GestureDetector(
+                onTap: () {
+                  if (isFav) {
+                    context
+                        .read<FavoritesBloc>()
+                        .add(FavoriteRemoved(dish.id));
+                  } else {
+                    context
+                        .read<FavoritesBloc>()
+                        .add(FavoriteAdded(dish));
+                  }
+                },
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.10),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    isFav ? Icons.favorite : Icons.favorite_border,
+                    color: isFav ? AppColors.coral : AppColors.grey,
+                    size: 22,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ],

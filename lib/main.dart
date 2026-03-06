@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/theme/app_theme.dart';
 import 'data/cart_database_helper.dart';
+import 'data/favorites_database_helper.dart';
+import 'presentation/favorites/favorites_bloc.dart';
 import 'presentation/home/home_viewmodel.dart';
 import 'presentation/trending/trending_screen.dart';
 import 'presentation/trending/trending_viewmodel.dart';
@@ -13,8 +15,9 @@ import 'presentation/cart/cart_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize the SQLite cart database
+  // Initialize the SQLite databases
   await CartDatabaseHelper.instance.database;
+  await FavoritesDatabaseHelper.instance.database;
   runApp(const MyApp());
 }
 
@@ -23,8 +26,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CartBloc(CartDatabaseHelper.instance),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => CartBloc(CartDatabaseHelper.instance)),
+        BlocProvider(create: (_) => FavoritesBloc(FavoritesDatabaseHelper.instance)),
+      ],
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => HomeViewModel()),

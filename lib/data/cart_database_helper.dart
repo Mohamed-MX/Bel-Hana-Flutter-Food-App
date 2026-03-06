@@ -55,7 +55,6 @@ class CartDatabaseHelper {
       );
     }
   }
-
   /// Set exact quantity for an item (removes it if qty <= 0)
   Future<void> updateQuantity(String dishId, int quantity) async {
     final db = await database;
