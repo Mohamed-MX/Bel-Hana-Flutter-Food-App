@@ -4,9 +4,14 @@
 
 A modern **Flutter food ordering application** with full Arabic (RTL) support. Bel Hana features a beautiful coral-themed UI, allowing users to browse dishes, explore trending restaurants, manage a shopping cart, and track their orders.
 
+
 ---
 # <img width="260" height="260" alt="ic_launcher" src="https://github.com/user-attachments/assets/cb7e82a5-2f92-4b38-b141-02cd67f49a5f" /> 
 ## ✨ Features
+
+<table>
+<img width="1176" height="768" alt="Gemini_Generated_Image_zct3ozct3ozct3oz" src="https://github.com/user-attachments/assets/2314f6a3-7ad7-4f1b-88f1-907013926cda" />
+</table>
 
 - **Splash Screen** — Branded launch screen with smooth transition
 - **Home Screen** — Category chips, search bar, promotional banners, and dish cards
