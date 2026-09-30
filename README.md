@@ -1,3 +1,4 @@
+
 ## 🍽️ Bel Hana - بالهنا
 
 
@@ -10,7 +11,7 @@ A modern **Flutter food ordering application** with full Arabic (RTL) support. B
 ## ✨ Features
 
 <table>
-<img width="1176" height="768" alt="Gemini_Generated_Image_zct3ozct3ozct3oz" src="https://github.com/user-attachments/assets/2314f6a3-7ad7-4f1b-88f1-907013926cda" />
+<img width="1176" height="668" alt="Gemini_Generated_Image_cq6mrjcq6mrjcq6m" src="https://github.com/user-attachments/assets/00ecb901-34ca-4dd5-b95c-d3f3dd139edf" />
 </table>
 
 - **Splash Screen** — Branded launch screen with smooth transition
